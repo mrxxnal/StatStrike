@@ -8,15 +8,10 @@
 </head>
 <body>
 
-        <!-- Explosion Effect -->
-    <div id="explosion-container">
-        <div id="smoke"></div>
-    </div>
-
     <!-- Navigation Bar -->
     <nav class="navbar">
         <ul>
-            <li><a href="#" onclick="showTab('introduction')">Introduction</a></li>
+            <li><a href="#" onclick="showTab('login')">Login</a></li>
             <li><a href="#" onclick="showTab('stats')">Stats Tracker</a></li>
             <li><a href="#" onclick="showTab('data-playground')">Data Playground</a></li>
             <li><a href="#" onclick="showTab('leaderboard')">Leaderboard</a></li>
@@ -25,14 +20,14 @@
     </nav>
 
     <!-- Introduction Section (Landing Page) -->
-    <section id="introduction" class="tab-content active">
+    <section id="login" class="tab-content active">
         <header id="hero" class="hero">
             <div class="overlay"></div>
             <div class="hero-content">
                 <h1>Dominate the Battlefield with <span>StatStrike</span></h1>
                 <p>Analyze your gameplay, compare with top players, and track your progress in Call of Duty.</p>
 
-                <!-- Track Your Performance Section -->
+                <!-- Track Your Performance -->
                 <section id="track-performance">
                     <h2>Track Your Performance</h2>
                     <form id="login-form">
@@ -66,7 +61,26 @@
         <h2>About Me</h2>
         <p>Hey, I'm Mrunal, the creator of StatStrike! I'm passionate about data science, gaming, and coding.</p>
     </section>
-
+            <!-- Floating Embers Effect -->
+            <div class="embers-container">
+                <!-- Creating 30 embers -->
+                <script>
+                    for (let i = 0; i < 30; i++) {
+                        document.write('<div class="ember"></div>');
+                    }
+                </script>
+            </div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+        </div>
     <script src="script.js"></script>
 </body>
 </html>

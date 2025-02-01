@@ -8,61 +8,6 @@ body {
     text-align: center;
 }
 
-/* Explosion Effect */
-#explosion-container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
-}
-
-/* Smoke Effect */
-#smoke {
-    width: 500px;
-    height: 500px;
-    background: url('images/smoke_effect.png') no-repeat center;
-    background-size: cover;
-    animation: smokeEffect 7s forwards;
-}
-
-/* Smoke Animation */
-@keyframes smokeEffect {
-    0% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(1.5); }
-    100% { opacity: 0; transform: scale(2); }
-}
-
-/* Screen Shake Effect */
-@keyframes screenShake {
-    0% { transform: translate(0, 0); }
-    10% { transform: translate(-5px, 5px); }
-    20% { transform: translate(5px, -5px); }
-    30% { transform: translate(-10px, 10px); }
-    40% { transform: translate(10px, -10px); }
-    50% { transform: translate(-5px, 5px); }
-    60% { transform: translate(5px, -5px); }
-    70% { transform: translate(-3px, 3px); }
-    80% { transform: translate(3px, -3px); }
-    90% { transform: translate(-1px, 1px); }
-    100% { transform: translate(0, 0); }
-}
-
-/* Apply Shake Effect Initially */
-.shake {
-    animation: screenShake 7s linear;
-}
-
-/* Hide Explosion Effect After 7s */
-.hidden {
-    display: none;
-}
-
 /* Navigation Bar - Bigger & Prettier */
 .navbar {
     background-color: #1e293b;
@@ -76,6 +21,106 @@ body {
     left: 0;
     z-index: 1000;
 }
+/* Smooth & Controlled Screen Shake */
+@keyframes subtleShake {
+    0% { transform: translate(0px, 0px) rotate(0deg); }
+    10% { transform: translate(4px, -4px) rotate(0.5deg); }
+    20% { transform: translate(-4px, 4px) rotate(-0.5deg); }
+    30% { transform: translate(3px, -3px) rotate(0.4deg); }
+    40% { transform: translate(-3px, 3px) rotate(-0.4deg); }
+    50% { transform: translate(2px, -2px) rotate(0.3deg); }
+    60% { transform: translate(-2px, 2px) rotate(-0.3deg); }
+    70% { transform: translate(1px, -1px) rotate(0.2deg); }
+    80% { transform: translate(-1px, 1px) rotate(-0.2deg); }
+    90% { transform: translate(0.5px, -0.5px) rotate(0.1deg); }
+    100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+/* Apply Smooth Shake Effect */
+.shake {
+    animation: subtleShake 0.05s infinite ease-out;
+}
+
+/* Smooth Transition to Rest */
+@keyframes fadeOutShake {
+    0% { transform: translate(1px, -1px) rotate(0.2deg); }
+    100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+.smooth-stop {
+    animation: fadeOutShake 0.3s ease-in-out forwards;
+}
+
+/* Ember Effect Container */
+.embers-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Ember Styles */
+.ember {
+    position: absolute;
+    bottom: 0;
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255, 85, 0, 0.9); /* Fiery orange */
+    border-radius: 50%;
+    box-shadow: 0px 0px 12px rgba(255, 85, 0, 0.8);
+    animation: riseEmber linear infinite;
+}
+
+/* Ember Animation */
+@keyframes riseEmber {
+    0% {
+        transform: translateX(0px) translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(5px) translateY(-50vh) scale(0.8);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(-5px) translateY(-120vh) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Random Ember Positioning (Up to 30 Embers) */
+.ember:nth-child(1) { left: 3%; animation-duration: 3s; animation-delay: 0s; }
+.ember:nth-child(2) { left: 7%; animation-duration: 4s; animation-delay: 0.5s; }
+.ember:nth-child(3) { left: 12%; animation-duration: 3.2s; animation-delay: 1s; }
+.ember:nth-child(4) { left: 18%; animation-duration: 5s; animation-delay: 1.5s; }
+.ember:nth-child(5) { left: 22%; animation-duration: 4.8s; animation-delay: 2s; }
+.ember:nth-child(6) { left: 27%; animation-duration: 3.5s; animation-delay: 2.5s; }
+.ember:nth-child(7) { left: 32%; animation-duration: 4.2s; animation-delay: 3s; }
+.ember:nth-child(8) { left: 37%; animation-duration: 3.6s; animation-delay: 3.5s; }
+.ember:nth-child(9) { left: 43%; animation-duration: 5.1s; animation-delay: 4s; }
+.ember:nth-child(10) { left: 48%; animation-duration: 3.9s; animation-delay: 4.5s; }
+.ember:nth-child(11) { left: 53%; animation-duration: 4.5s; animation-delay: 5s; }
+.ember:nth-child(12) { left: 58%; animation-duration: 3.4s; animation-delay: 5.5s; }
+.ember:nth-child(13) { left: 63%; animation-duration: 5.2s; animation-delay: 6s; }
+.ember:nth-child(14) { left: 69%; animation-duration: 4.7s; animation-delay: 6.5s; }
+.ember:nth-child(15) { left: 75%; animation-duration: 3.8s; animation-delay: 7s; }
+.ember:nth-child(16) { left: 80%; animation-duration: 4.1s; animation-delay: 7.5s; }
+.ember:nth-child(17) { left: 86%; animation-duration: 5.5s; animation-delay: 8s; }
+.ember:nth-child(18) { left: 90%; animation-duration: 3.3s; animation-delay: 8.5s; }
+.ember:nth-child(19) { left: 95%; animation-duration: 4.9s; animation-delay: 9s; }
+.ember:nth-child(20) { left: 98%; animation-duration: 3.7s; animation-delay: 9.5s; }
+.ember:nth-child(21) { left: 10%; animation-duration: 4.6s; animation-delay: 10s; }
+.ember:nth-child(22) { left: 20%; animation-duration: 3.9s; animation-delay: 10.5s; }
+.ember:nth-child(23) { left: 30%; animation-duration: 5s; animation-delay: 11s; }
+.ember:nth-child(24) { left: 40%; animation-duration: 4.3s; animation-delay: 11.5s; }
+.ember:nth-child(25) { left: 50%; animation-duration: 3.6s; animation-delay: 12s; }
+.ember:nth-child(26) { left: 60%; animation-duration: 5.2s; animation-delay: 12.5s; }
+.ember:nth-child(27) { left: 70%; animation-duration: 3.5s; animation-delay: 13s; }
+.ember:nth-child(28) { left: 80%; animation-duration: 4.7s; animation-delay: 13.5s; }
+.ember:nth-child(29) { left: 90%; animation-duration: 3.8s; animation-delay: 14s; }
+.ember:nth-child(30) { left: 100%; animation-duration: 5.5s; animation-delay: 14.5s; }
 
 .navbar ul {
     list-style: none;
@@ -176,9 +221,8 @@ body {
 .input-group {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 15px;  /* Increased spacing */
     margin-top: 20px;
-    flex-wrap: wrap;
 }
 
 .input-group input {
@@ -189,12 +233,8 @@ body {
     background: #1e293b;
     color: white;
     text-align: center;
-    width: 280px;
+    width: 300px; /* Slightly bigger input */
     animation: fadeInUp 1.5s ease-in-out;
-}
-
-.input-group input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
 }
 
 .input-group button {
@@ -209,10 +249,12 @@ body {
     animation: fadeInUp 1.8s ease-in-out;
 }
 
+/* Button Hover Effects */
 .input-group button:hover {
     background: #e6ac00;
     transform: scale(1.05);
 }
+
 /* Button Click Effect */
 .input-group button:active {
     animation: pulse 0.2s ease-in-out;

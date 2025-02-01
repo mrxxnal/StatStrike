@@ -6,24 +6,16 @@ function showTab(tabId) {
     document.getElementById(tabId).classList.add("active");
 }
 
-// Default: Show Introduction Tab
 document.addEventListener("DOMContentLoaded", () => {
-    showTab("introduction");
+    showTab("login");
 
-    // Trigger explosion effect on page load
-    const explosion = document.getElementById("explosion-container");
-    const body = document.body;
+    // Add smooth shake effect for 0.7 seconds
+    document.body.classList.add("shake");
 
-    if (explosion) {
-        // Add screen shake effect
-        body.classList.add("shake");
-
-        // Remove explosion & shake after 7 seconds
-        setTimeout(() => {
-            explosion.classList.add("hidden");
-            body.classList.remove("shake");
-        }, 7000);
-    }
+    setTimeout(() => {
+        document.body.classList.remove("shake");
+        document.body.classList.add("smooth-stop"); // Eases into rest
+    }, 700); // Now it's only 0.7 seconds!
 });
 
 // Handle User Login and Fetch Stats
