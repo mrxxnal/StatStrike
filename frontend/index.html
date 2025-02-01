@@ -4,26 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StatStrike - CoD Analytics</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Hero Section -->
-    <header id="hero" class="hero">
-        <div class="overlay"></div> <!-- Dark overlay -->
-        <div class="hero-content">
-            <h1>Dominate the Battlefield with <span>StatStrike</span></h1>
-            <p>Analyze your gameplay, compare with top players, and track your progress in Call of Duty.</p>
-            <a href="#stats" class="btn">Check Your Stats</a>
-        </div>
-    </header>
+        <!-- Explosion Effect -->
+    <div id="explosion-container">
+        <div id="smoke"></div>
+    </div>
 
-    <!-- Player Stats Section -->
-    <section id="stats" class="stats-section">
-        <h2>Track Your Performance</h2>
-        <input type="text" id="cod-username" placeholder="Enter your CoD username">
-        <button onclick="fetchStats()">Get Stats</button>
-        <div id="player-stats"></div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#" onclick="showTab('introduction')">Introduction</a></li>
+            <li><a href="#" onclick="showTab('stats')">Stats Tracker</a></li>
+            <li><a href="#" onclick="showTab('data-playground')">Data Playground</a></li>
+            <li><a href="#" onclick="showTab('leaderboard')">Leaderboard</a></li>
+            <li><a href="#" onclick="showTab('about')">About Me</a></li>
+        </ul>
+    </nav>
+
+    <!-- Introduction Section (Landing Page) -->
+    <section id="introduction" class="tab-content active">
+        <header id="hero" class="hero">
+            <div class="overlay"></div>
+            <div class="hero-content">
+                <h1>Dominate the Battlefield with <span>StatStrike</span></h1>
+                <p>Analyze your gameplay, compare with top players, and track your progress in Call of Duty.</p>
+
+                <!-- Track Your Performance Section -->
+                <section id="track-performance">
+                    <h2>Track Your Performance</h2>
+                    <form id="login-form">
+                        <div class="input-group">
+                            <input type="text" id="cod-username" placeholder="Enter your CoD username" required>
+                            <input type="password" id="cod-password" placeholder="Enter your password" required>
+                            <button type="submit">Get Stats</button>
+                        </div>
+                    </form>
+                    <div id="player-stats"></div>
+                </section>
+            </div>
+        </header>
+    </section>
+
+    <!-- Data Playground Section -->
+    <section id="data-playground" class="tab-content">
+        <h2>Experiment with Data</h2>
+        <p>Explore trends, patterns, and insights based on Call of Duty player data.</p>
+        <canvas id="dataChart"></canvas> <!-- Placeholder for Data Visualizations -->
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="tab-content">
+        <h2>Top Players Leaderboard</h2>
+        <div id="leaderboard-container">Loading...</div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="tab-content">
+        <h2>About Me</h2>
+        <p>Hey, I'm Mrunal, the creator of StatStrike! I'm passionate about data science, gaming, and coding.</p>
     </section>
 
     <script src="script.js"></script>

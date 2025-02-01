@@ -1,27 +1,25 @@
-require("dotenv").config();
 const express = require("express");
-const axios = require("axios");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 5001;
-const COD_API_KEY = process.env.COD_API_KEY;
+const users = {
+    "testUser": { password: "testPass", kdRatio: 1.5, kills: 250, wins: 50 },
+    "proGamer": { password: "codMaster", kdRatio: 2.7, kills: 1000, wins: 200 }
+};
 
-app.get("/api/stats", async (req, res) => {
-    const { username } = req.query;
-    if (!username) return res.status(400).json({ error: "Username required" });
-
-    try {
-        const response = await axios.get(`https://api.tracker.gg/api/v2/warzone/standard/profile/psn/${username}`, {
-            headers: { "TRN-Api-Key": COD_API_KEY },
-        });
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).json({ error: "Failed to fetch stats" });
+// Authentication Route
+app.post("/api/authenticate", (req, res) => {
+    const { username, password } = req.body;
+    
+    if (users[username] && users[username].password === password) {
+        res.json({ success: true, username, ...users[username] });
+    } else {
+        res.json({ success: false, message: "Invalid credentials" });
     }
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(5001, () => console.log("Server running on port 5001"));
