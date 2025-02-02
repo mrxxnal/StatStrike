@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 700); // Now it's only 0.7 seconds!
 });
 
-// Handle User Login and Fetch Stats
+// Handle User Login and Redirect to Dashboard
 document.getElementById("login-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -38,12 +38,12 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            document.getElementById("player-stats").innerHTML = `
-                <h3>${data.username}</h3>
-                <p><strong>K/D Ratio:</strong> ${data.kdRatio}</p>
-                <p><strong>Total Kills:</strong> ${data.kills}</p>
-                <p><strong>Wins:</strong> ${data.wins}</p>
-            `;
+            // Store user data in localStorage before redirecting
+            localStorage.setItem("codUsername", data.username);
+            localStorage.setItem("playerStats", JSON.stringify(data));
+
+            // Redirect to the dashboard
+            window.location.href = "dashboard.html";
         } else {
             alert("Invalid credentials. Please try again.");
         }
